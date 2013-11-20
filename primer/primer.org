@@ -1,0 +1,77 @@
+-*- mode: org -*-
+
+#+STARTUP: odd
+#+STARTUP: hidestars
+
+* Ideas
+** Limit conceptual explanation of cryptography to the high-level;
+   don't bother explaining hash functions, symmetric ciphers, etc.
+** Try to avoid suggesting overrides to GnuPG's config; instead,
+   we should trust that GnuPG has sensible defaults.
+** Encourage people to use mailer integration.
+   Don't try to document the various GUIs; just link to them.
+** Consider whether to not describe the ownertrust/validity features --
+   is the common case simply to obtain a key,
+
+* Cryptography and GnuPG concepts
+*** cryptography provides comms that can't be eavesdropped on.
+*** public-key encryption: public keys, private keys
+*** key terminology: subkeys, certificates, revocation certificate,
+                     designated revoker.
+*** web of trust: validity, trust, ownertrust
+
+* Generating a key
+
+  Provide a step-by-step procedure to follow, with clear
+  recommendations.
+
+  1. Generate a 2048-bit RSA key.
+  1.1. Set expiration date to 1-2 years.
+  2. Generate a revocation certificate.
+  3. Back up the secret key data and the revocation certificate.
+  4. Optional: publish your key to a keyserver.  Or: publish the key on your website.
+
+* Using GnuPG in your e-mail program.
+
+  List the various mailers/GUI clients, or link to gnupg.org.
+  Should include solutions for:
+   * gpg4win
+   * mutt, Evolution, Kmail
+   * Outlook
+   * Apple Mail, Entourage
+   * gmail, HotMail, Yahoo Mail, Opera Mail.
+
+* Using GnuPG from the command line.
+  Possibly make this an appendix?
+
+  Sign/validate a message.  (Clearsigning)
+  Encrypt/decrypt a message.
+
+* Managing your keyring
+*** Getting a correspondent's key
+***** Searching a keyserver
+***** Importing from a file
+***** How to validate a key -- look at its sign
+
+*** Validating other people's keys
+***** Key-signing parties
+***** Setting the ownertrust value for other people's keys
+      gpg --edit-key 0xXXXXXXXX trust quit
+      gpg --edit-key 0xXXXXXXXX (and then mess around interactively)
+
+* Appendix: Encrypting files with a password
+*** gpg -c
+*** Editing encrypted files
+***** vi: http://vim.wikia.com/wiki/Edit_gpg_encrypted_files
+***** emacs: http://www.emacswiki.org/emacs/GnuPG
+
+* References
+
+  Getting Started
+  http://spin.atomicobject.com/2013/09/25/gpg-gnu-privacy-guard/
+
+  OpenPGP Best Practices
+  https://we.riseup.net/riseuplabs+paow/openpgp-best-practices
+
+  Prep for migration off SHA-1
+  http://www.debian-administration.org/users/dkg/weblog/48
